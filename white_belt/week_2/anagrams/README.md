@@ -1,6 +1,6 @@
 # Anagrams
 
-URL: https://www.coursera.org/learn/c-plus-plus-white/programming/5NGSX/anaghrammy  
+URL: https://www.coursera.org/learn/c-plus-plus-white/programming/5NGSX/anaghrammy
 
 Слова называются анаграммами друг друга, если одно из них можно получить перестановкой букв в другом. Например, слово «eat» можно получить перестановкой букв слова «tea», поэтому эти слова являются анаграммами друг друга. Даны пары слов, проверьте для каждой из них, являются ли слова этой пары анаграммами друг друга.
 
