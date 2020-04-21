@@ -1,4 +1,4 @@
-# Capitals
+# Countries
 
 URL: https://www.coursera.org/learn/c-plus-plus-white/programming/ZUCo1/spravochnik-stolits
 
