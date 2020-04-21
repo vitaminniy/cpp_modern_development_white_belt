@@ -1,6 +1,5 @@
 #include <iostream>
 #include <map>
-#include <vector>
 
 std::map<char, int> BuildCharCounters(const std::string& s) {
 	std::map<char, int> result;
@@ -14,7 +13,6 @@ int main() {
 	int npairs = 0;
 	std::cin >> npairs;
 
-	std::vector<std::string> result;
 	for (int i = 0; i < npairs; i++) {
 		std::string a = "", b = "";
 		std::cin >> a >> b;
@@ -23,13 +21,9 @@ int main() {
 		std::map<char, int> b_chars = BuildCharCounters(b);
 
 		if (a_chars == b_chars) {
-			result.push_back("YES");
+			std::cout << "YES" << std::endl;
 		} else {
-			result.push_back("NO");
+			std::cout << "NO" << std::endl;
 		}
-	}
-
-	for (const auto& i : result) {
-		std::cout << i << std::endl;
 	}
 }
