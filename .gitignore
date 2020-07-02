@@ -3,6 +3,9 @@
 *.a
 .DS_Store
 
+# JetBrains
+.idea
+
 # CMake
 CMakeFiles
 CMakeCache.txt
