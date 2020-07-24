@@ -1,15 +1,7 @@
-*.out
-*.o
-*.a
+# Darwin
 .DS_Store
 
 # JetBrains
 .idea
 
 build
-
-# CMake
-CMakeFiles
-CMakeCache.txt
-Makefile
-cmake_install.cmake
