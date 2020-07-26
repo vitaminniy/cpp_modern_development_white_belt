@@ -7,4 +7,5 @@ clean:
 build: clean
 	mkdir ${BUILD_DIR}
 	cd ${BUILD_DIR} && cmake ..
+	cd ${BUILD_DIR} && make
 .PHONY: build
