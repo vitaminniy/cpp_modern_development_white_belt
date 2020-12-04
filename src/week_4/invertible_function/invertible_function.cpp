@@ -1,55 +1,97 @@
 #include <algorithm>
+#include <exception>
+#include <stdexcept>
 #include <vector>
 
-class FunctionPart {
-	friend class Function;
+namespace {
 
-	FunctionPart(char op, double value) {
-		this->op = op;
-		this->value = value;
-	}
+constexpr const char kOpAddition = '+';
+constexpr const char kOpSubstraction = '-';
+constexpr const char kOpMultiplication = '*';
+constexpr const char kOpDivision = '/';
 
-	double apply(double value) const {
-		if (this->op == '+') {
-			return value + this->value;
-		}
-		return value - this->value;
-	}
+enum class Op { Addition, Substraction, Multiplication, Division };
 
-	void invert() {
-		if (op == '+') {
-			op = '-';
-		} else {
-			op = '+';
-		}
-	}
-	
-	char op;
-	double value;
+constexpr Op char_to_op(char c) {
+  switch (c) {
+  case kOpAddition:
+    return Op::Addition;
+  case kOpSubstraction:
+    return Op::Substraction;
+  case kOpMultiplication:
+    return Op::Multiplication;
+  case kOpDivision:
+    return Op::Division;
+  }
+
+  throw std::invalid_argument("unknown operation");
+}
+
+struct function_part {
+  // applies operation on value.
+  constexpr double apply(double value) const;
+
+  // inverts function_part.
+  constexpr void invert();
+
+  Op op;
+  double v;
 };
+
+inline constexpr double function_part::apply(double value) const {
+  switch (op) {
+  case Op::Addition:
+    return value + v;
+  case Op::Substraction:
+    return value - v;
+  case Op::Multiplication:
+    return value * v;
+  case Op::Division:
+    return value / v;
+  }
+}
+
+inline constexpr void function_part::invert() {
+  switch (op) {
+  case Op::Addition:
+    op = Op::Substraction;
+    return;
+  case Op::Substraction:
+    op = Op::Addition;
+    return;
+  case Op::Multiplication:
+    op = Op::Division;
+    return;
+  case Op::Division:
+    op = Op::Multiplication;
+    return;
+  }
+}
+} // namespace
 
 class Function {
 public:
-	Function() = default;
+  Function() = default;
 
-	void AddPart(char op, double value) {
-		parts.push_back({op, value});
-	}
+  void AddPart(char op, double value) {
+    parts_.push_back({char_to_op(op), value});
+  }
 
-	double Apply(double value) const {
-		for (const auto& p : parts) {
-			value = p.apply(value);
-		}
-		return value;
-	}
+  double Apply(double value) const {
+    for (const auto &p : parts_) {
+      value = p.apply(value);
+    }
+    return value;
+  }
 
-	void Invert() {
-		for (auto& p : parts) {
-			p.invert();
-		}
-		
-		std::reverse(parts.begin(), parts.end());
-	}
+  void Invert() {
+    for (auto &p : parts_) {
+      p.invert();
+    }
+
+    std::reverse(parts_.begin(), parts_.end());
+  }
+
 private:
-	std::vector<FunctionPart> parts;
+  std::vector<function_part> parts_;
 };
