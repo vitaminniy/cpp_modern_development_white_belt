@@ -1,5 +1,6 @@
 add_subdirectory(files)
 add_subdirectory(invertible_function)
 add_subdirectory(rational)
+add_subdirectory(rational_calc)
 add_subdirectory(table)
 add_subdirectory(time_server)
